@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:args/args.dart';
+import 'package:dart_soccer_championship/app/config/application_config.dart';
 import 'package:shelf/shelf.dart' as shelf;
 import 'package:shelf/shelf_io.dart' as io;
 
@@ -18,6 +19,9 @@ Future<void> main(List<String> args) async {
     exitCode = 64; // 64: Command line usage error
     return;
   }
+
+  final appConfig = ApplicationConfig();
+  appConfig.loadApplicationConfig();
 
   var handler = const shelf.Pipeline()
       .addMiddleware(shelf.logRequests())
