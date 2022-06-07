@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:dart_soccer_championship/app/middlewares/middlewares.dart';
 import 'package:shelf/shelf.dart';
 
-class CorsMiddlewares extends Middlewares {
+class CorsMiddleware extends Middlewares {
   final Map<String, String> headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
