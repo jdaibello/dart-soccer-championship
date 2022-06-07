@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:args/args.dart';
 import 'package:dart_soccer_championship/app/config/application_config.dart';
+import 'package:dart_soccer_championship/app/middlewares/cors/cors_middlewares.dart';
 import 'package:shelf/shelf.dart' as shelf;
 import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf_router/shelf_router.dart';
@@ -26,6 +27,7 @@ Future<void> main(List<String> args) async {
   await appConfig.loadApplicationConfig(router);
 
   var handler = const shelf.Pipeline()
+      .addMiddleware(CorsMiddlewares().handler)
       .addMiddleware(shelf.logRequests())
       .addHandler(router);
 
