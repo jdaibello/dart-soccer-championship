@@ -1,5 +1,6 @@
 import 'package:dart_appwrite/dart_appwrite.dart';
 import 'package:dart_soccer_championship/app/config/appwrite_client_configuration.dart';
+import 'package:dart_soccer_championship/app/config/service_locator_config.dart';
 import 'package:dart_soccer_championship/app/logger/i_logger.dart';
 import 'package:dart_soccer_championship/app/logger/logger_impl.dart';
 import 'package:dotenv/dotenv.dart';
@@ -11,6 +12,7 @@ class ApplicationConfig {
   Future<void> loadApplicationConfig() async {
     await _loadAppwriteConfig();
     _configLogger();
+    _loadDependencies();
   }
 
   Future<void> _loadAppwriteConfig() async {
@@ -34,4 +36,6 @@ class ApplicationConfig {
 
   void _configLogger() =>
       GetIt.I.registerLazySingleton<ILogger>(() => LoggerImpl());
+
+  void _loadDependencies() => configureDependencies();
 }
